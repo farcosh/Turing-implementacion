@@ -1,3 +1,10 @@
+#Programa que implementa una maquina de Turing
+#Integrantes del equipo
+#Ramírez Ramírez Servando
+#Chavez Pavon Jose Manuel
+#Saulés Rojas David
+#Elizabeth
+
 import sys
 
 #Hacemos esto por si una recursión es mayor a 999 el programa no truene
