@@ -144,5 +144,6 @@ for b in range(0, m):
     evaluaciones.append(e[1])
 
 #It's a kind of magic ( ^-^)
+#https://youtu.be/cIZFq3VDeUY
 turing(reglas, evaluaciones)
 	
