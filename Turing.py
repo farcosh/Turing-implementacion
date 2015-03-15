@@ -1,3 +1,8 @@
+import sys
+
+#Hacemos esto por si una recursión es mayor a 999 el programa no truene
+sys.setrecursionlimit(10000)
+
 # Funcion para crear la cinta
 # Crearemos una lista de longitud 1000, funcionara como la cinta
 # la cual llenaremos de 0's.
@@ -5,7 +10,7 @@ def crea_cinta():
     l = []    #Creamos la lista que simulara la cinta
 
     #for-Para llenar la lista de 0's
-    for i in range(0, 999):
+    for i in range(0, 1000):
         l.append(0)
 
     return l    #Regresamos la cinta
@@ -51,7 +56,7 @@ def leer(
 
     #Clausula de escape
     if (lugar < 0
-            or lugar > 1000):
+            or lugar >= 1000):
         #Si en algun momento el lugar se sale de la cinta
         #Regresamos el error "MLE"
         print("Error MLE")
@@ -66,10 +71,10 @@ def leer(
 
     contador += 1    #Aumentamos en 1 el contador
     valor = cinta[lugar]    #El valor en el lugar actual de la cinta
-    llave = str(estado) + str(valor);   #Llave para el diccionario
+    llave = str(estado) + str(valor)   #Llave para el diccionario
 
     #Clausula de escape
-    if not dic.has_key(llave):
+    if not llave in dic:
         #Si la llave no se encuntra en el diccionario
         #procedemos a verificar si la cantidad de unos es correcta.
         contar(cinta, unos)
@@ -101,12 +106,12 @@ def turing(
     cinta = crea_cinta() #Abusando de la ambigüedad "Creamos la cinta" XD
 
     #Obtenemos las evaluaciónes y las emulamos
-    for a in range(0, len(list) / 2):
-        unos = list.pop() #Obtenemos el numero de 1's para la cinta
-        resultado = list.pop() #Obtenemos el resultado deseado
+    for a in range(0, int(len(list) / 2)):
+        unos = list.pop(0) #Obtenemos el numero de 1's para la cinta
+        resultado = list.pop(0) #Obtenemos el resultado deseado
 
         #Actualizamos la cinta con la cantidad de unos dada
-        for x in range(0, int(unos) - 1):
+        for x in range(0, int(unos)):
             cinta[x] = 1
 
         #Llamamos al metodo recursivo leer que emulara la maquina
@@ -125,17 +130,17 @@ evaluaciones = [] #Creamos la lista donde guardaremos las evaluaciones
 #ya sabemos la cantidad de reglas asi que usaremos un for para
 #para preguntar esa cantidad de veces
 print("Ingresa las reglas separadas con espacio")
-for a in range(0, n):
+for a in range(0, int(n)):
     #Solicitamos la entrada
     instruccion = input("Regla numero " + str(a + 1) + ": ")
     ins = instruccion.split(" ") #Preparamos la entrada para se guardada
     #Guardamos las reglas en el diccionario
-    reglas[ins[0] + ins[1]] = ins[2:5] 
+    reglas[ins[0] + ins[1]] = ins[2:5]
 
 #Analogo a lo anterior el usuario ingresara las evaluaciones
 #en esta ocasion las guardaremos una lista
 print("Ingresa las evaluaciones separadas con espacio")
-for b in range(0, m):
+for b in range(0, int(m)):
     #Solicitamos la entrada
     evaluacion = input("evaluacion numero " + str(b + 1) + ": ")
     e = evaluacion.split(" ") #Preparamos la entrada para se guardada
